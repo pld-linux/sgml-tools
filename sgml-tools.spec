@@ -109,7 +109,7 @@ cd ..
 
 (cd entity-map ; autoconf)
 (cd iso-entities ; autoconf)
-autoconf
+%{__autoconf}
 %configure \
 	--with-installed-nsgmls \
 	--libdir=$RPM_BUILD_ROOT%{_libdir}/sgml-tools \
