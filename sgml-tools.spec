@@ -155,36 +155,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 /usr/share/sgml/sgml-tools
 /usr/lib/entity-map
-
-%changelog
-* Tue Sep 8 1998 Ziemek Borowski <ziembor@faq-bot.ziembor.waw.pl> 
-- removed nsgmls (provides by jade) 
-- removed Entity Maps (provides by sgml-common) 
-- dtd moved to separate noarch package 
-- sgmls moved to separate binary package 
-
-* Wed Jul 01 1998 Hugo van der Kooij <hvdkooij@nllgg.nl>
-- Updated to 1.0.7
-- Removed the (silly) patch (thank you Donny, but Cees and I are Dutch ;-)
-
-* Tue May 05 1998 Donnie Barnes <djb@redhat.com>
-
-- changed default papersize to letter (from a4...sorry Europeans :-)
- use --papersize=a4 on any sgml2* command to change it or remove the
- patch from this spec file and rebuild.
-
-* Thu Apr 30 1998 Cristian Gafton <gafton@redhat.com>
-- updated to 1.0.6
-
-* Fri Apr 24 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr, tr
-
-* Mon Jan 12 1998 Donnie Barnes <djb@redhat.com>
-- updated from 0.99 to 1.0.3
-- added BuildRoot
-
-* Sat Nov 01 1997 Donnie Barnes <djb@redhat.com>
-- fixed man pages
-
-* Mon Oct 20 1997 Donnie Barnes <djb@redhat.com>
-- new release - Obsoletes linuxdoc-sgml
