@@ -83,7 +83,7 @@ Group(pl):      Aplikacje/Publikowanie/SGML
 sgmls - a validating SGML parser
 
 %prep
-%setup
+%setup -q
 %patch0 -p1 -b .egcs
 %patch1 -p1 -b .fixsgml2latex
 %patch2 -p1 -b .fixconfigure
@@ -96,7 +96,7 @@ cd sgmls-1.1
 	%{__make} config.h \
 		 prefix=$RPM_BUILD_ROOT/%{_prefix} \
 		 mandir=$RPM_BUILD_ROOT%{_mandir}
-	%{__make}  \
+	%{__make} CFLAGS="$RPM_OPT_FLAGS" \
                  prefix=$RPM_BUILD_ROOT/%{_prefix} \
                  mandir=$RPM_BUILD_ROOT%{_mandir}
 cd ..
