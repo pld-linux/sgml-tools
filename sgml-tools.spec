@@ -107,14 +107,10 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
 	sgmls-1.1/LICENSE sgmls-1.1/NEWS 
 
 %post 
-#!/bin/bash 
-pushd `pwd` 
 cd /usr/lib/sgml-tools
 ln -f -s -n ../../share/sgml/sgml-tools/ dtd
-popd 
 
 %preun 
-#!/bin/bash
 if [ -L /usr/lib/sgml-tools/dtd ]; then
 	rm -rf /usr/lib/sgml-tools/dtd
 if  
