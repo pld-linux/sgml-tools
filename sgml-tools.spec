@@ -10,8 +10,6 @@ Version:	1.0.9
 Release:	13
 License:	Dreeware
 Group:		Applications/Publishing/SGML
-Group(de):	Applikationen/Publizieren/SGML
-Group(pl):	Aplikacje/Publikowanie/SGML
 Source0:	http://www.consultronics.com/~cdegroot/sgmltools/dist/%{name}-%{version}.tar.gz
 Source1:	sgml2info.1.pl
 Source2:	sgml2txt.1.pl
@@ -71,8 +69,6 @@ mogelijk in: ASCII, DVI, HTML, LaTeX, PostScript en RTF (Windows help)
 Summary:	linuxdoc DTD
 Summary(pl):	linuxdoc DTD
 Group:		Applications/Publishing/SGML
-Group(de):	Applikationen/Publizieren/SGML
-Group(pl):	Aplikacje/Publikowanie/SGML
 
 %description dtd
 LinuxDoc DTD.
@@ -85,8 +81,6 @@ Summary:	sgmls
 Summary(pl):	sgmls
 Version:	1.1
 Group:		Applications/Publishing/SGML
-Group(de):	Applikationen/Publizieren/SGML
-Group(pl):	Aplikacje/Publikowanie/SGML
 
 %description -n sgmls
 sgmls - a validating SGML parser.
