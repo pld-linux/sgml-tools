@@ -1,0 +1,19 @@
+--- sgml-tools-1.0.9/lib/dist/fmt_latex2e.pl.fixsgml2latex	Fri Feb 11 11:59:40 2000
++++ sgml-tools-1.0.9/lib/dist/fmt_latex2e.pl	Fri Feb 11 12:00:03 2000
+@@ -162,14 +162,10 @@
+   #  Set the correct \documentclass options. The if statement is just
+   #  a small optimization.
+   #
+-  if ($global->{language} ne "en" ||
+-      $global->{papersize} ne "a4" ||
+-      $latex2e->{pagenumber} != 1 ||
+-      $global->{pass} ne "" ||
+-      $latex2e->{makeindex})
++  if (1)
+     {
+       my $langlit = ISO2English ($global->{language});
+-      $langlit = ($langlit eq 'english') ? "" : ",$langlit"; 
++      $langlit = ",$langlit"; 
+       my $replace = $global->{papersize} . 'paper' .   $langlit;
+       open OUTFILE, ">$filename.tex";
+       while (<$infile>)

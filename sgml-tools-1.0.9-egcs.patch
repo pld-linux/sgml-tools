@@ -1,0 +1,53 @@
+--- sgml-tools-1.0.9/rtf-fix/rtf2rtf.l.egcs	Wed Mar 17 16:48:10 1999
++++ sgml-tools-1.0.9/rtf-fix/rtf2rtf.l	Wed Mar 17 16:49:56 1999
+@@ -53,8 +53,8 @@
+ int section_id = 0; /* used for TOC hyperlinks */
+ int in_appendix = 0;
+   
+-FILE *out = stdout;
+-FILE *idx_fp = stdout;
++FILE *out;
++FILE *idx_fp;
+ 
+ char buf[2048], sectname[256], labeltxt[256];
+ char firstname[256], outname[256];
+@@ -380,11 +380,13 @@
+ 
+ %%
+ 
+-void
++int
+ main( int argc, char **argv )
+ {
+   int i;
+ 
++  out = idx_fp = stdout;
++
+   strcpy( firstname, "RTF" );
+ 
+   for (i = 1; i < argc; i++)
+@@ -420,7 +422,7 @@
+   fputs ("\n}\n", idx_fp);
+   fclose( idx_fp );      
+ 
+-  exit( 0 );
++  return 0;
+ }
+ 
+ /* Use the existing indentation style:
+--- sgml-tools-1.0.9/sp/include/config.h.egcs	Tue Oct 13 07:34:03 1998
++++ sgml-tools-1.0.9/sp/include/config.h	Wed Mar 17 16:39:57 1999
+@@ -9,9 +9,11 @@
+ 
+ #ifdef __GNUG__
+ // It's not missing, but it pulls in libg++
+-#define SP_NEW_H_MISSING
++// NOT GOOD WITH EGCS 1.1.2!!!
++// #define SP_NEW_H_MISSING
+ // set_new_handler() has to be declared extern "C"
+-#define SP_SET_NEW_HANDLER_EXTERN_C
++// THE FOLLOWING IS NOT NEEDED WITH EGCS 1.1.2 EITHER...
++//#define SP_SET_NEW_HANDLER_EXTERN_C
+ #ifndef SP_MANUAL_INST
+ #define SP_MANUAL_INST
+ #endif

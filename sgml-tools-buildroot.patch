@@ -1,0 +1,16 @@
+--- sgml-tools-1.0.9/Makefile.in.buildroot	Fri Oct 16 15:06:43 1998
++++ sgml-tools-1.0.9/Makefile.in	Thu Jun  1 01:48:10 2000
+@@ -105,13 +105,6 @@
+ 	(cd $(libdir)/dist; rm -f linuxdoc97; ln -s sgmltool linuxdoc97)
+ 	(cd $(libdir)/dtd;  rm -f linuxdoc.dtd; ln -s linuxdoc96.dtd linuxdoc.dtd)
+ 	(cd $(bindir); for i in $(progs); do rm -f $$i; ln sgmltools.v1 $$i;done)
+-	@echo "Installing documentation in $(LINUXDOCDOC) ..."
+-	(cd doc; PATH=${PATH}:$(bindir) sh Makedoc.sh)
+-	if [ ! -d $(LINUXDOCDOC) ]; then mkdir -p $(LINUXDOCDOC); fi
+-	chmod 755 $(LINUXDOCDOC)
+-	cp -r doc/* $(LINUXDOCDOC) 
+-	find $(LINUXDOCDOC) -type d -print | xargs chmod 755
+-	find $(LINUXDOCDOC) -type f -print | xargs chmod 644
+ 
+ # what dirs do the targets clean and distclean need?
+ DDIRS=
