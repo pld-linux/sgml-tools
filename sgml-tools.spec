@@ -6,15 +6,16 @@ Summary(pl):	Narzêdzia konweruj±ce do linuxdoc-dtd
 Summary(tr):	GNU belge biçimlendirme sistemi
 Name:		sgml-tools
 Version:	1.0.7
-Release:	5
+Release:	6
 Copyright:	freeware
 Group:		Applications/Publishing/SGML
 Group(pl):	Aplikacje/Publikowanie/SGML
 Source:		http://ftp.nllgg.nl/pub2/SGMLtools/1.0/%{name}-%{version}.tar.gz
-Patch:		%{name}.patch
+Patch0:		%{name}.patch
+Patch1:		%{name}-no-doc-rebuild.patch
 URL:		http://www.nllgg.nl/SGMLtools
 Obsoletes:	linuxdoc-sgml
-BuildRequires:	jade
+BuildRequires:	openjade
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -36,7 +37,7 @@ créer du PostScript et du dvi (avec LaTeX), du texte simple (avec groff),
 du HTML, et des fichiers texinfo depuis un simple fichier SGML.
 
 %description -l pl
-Narzêdzia konweruj±ce do linuxdoc-dtd.
+Narzêdzia konwertuj±ce dla linuxdoc-dtd.
 
 %description -l tr
 SGMLtools, SGML tabanlý deðiþik biçimlerde çýktýlar üretmenizi saðlayan bir
@@ -72,7 +73,8 @@ Sgmls
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 %configure \
