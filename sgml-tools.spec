@@ -19,12 +19,13 @@ Patch2:		%{name}-%{version}-fixconfigure.patch
 Patch3:		%{name}-buildroot.patch
 Patch4:		%{name}-manfix.patch
 Patch5:		%{name}-%{version}-jtz.patch
-URL:		http://www.sgmltools.org
+URL:		http://www.sgmltools.org/
+BuildRequires:	autoconf
+BuildRequires:	groff
+BuildRequires:	openjade
 Requires:	/usr/bin/nsgmls
 Requires:	sgmls
 Obsoletes:	linuxdoc-sgml
-BuildRequires:	openjade
-BuildRequires:	autoconf
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -105,10 +106,11 @@ cd sgmls-1.1
 	%{__make} CFLAGS="%{rpmcflags}" \
                  prefix=$RPM_BUILD_ROOT%{_prefix} \
                  mandir=$RPM_BUILD_ROOT%{_mandir}
+cd ../entity-map
+%{__autoconf}
+cd ../iso-entities
+%{__autoconf}
 cd ..
-
-(cd entity-map ; autoconf)
-(cd iso-entities ; autoconf)
 %{__autoconf}
 %configure \
 	--with-installed-nsgmls \
@@ -156,6 +158,9 @@ conforming SGML systems and applications as defined in
 ISO 8879, provided this notice is included in all copies.
 EOF
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %post
 cd /usr/lib/sgml-tools
 ln -f -s -n ../../share/sgml/sgml-tools/ dtd
@@ -164,9 +169,6 @@ ln -f -s -n ../../share/sgml/sgml-tools/ dtd
 if [ -L /usr/lib/sgml-tools/dtd ]; then
         rm -rf /usr/lib/sgml-tools/dtd
 fi
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
