@@ -1,0 +1,13 @@
+diff -Nur sgml-tools-1.0.7/Makefile.in sgml-tools-1.0.7.new/Makefile.in
+--- sgml-tools-1.0.7/Makefile.in	Fri Jun 26 21:43:08 1998
++++ sgml-tools-1.0.7.new/Makefile.in	Sun Jun 25 12:56:55 2000
+@@ -105,7 +105,8 @@
+ 	(cd $(libdir)/dtd;  rm -f linuxdoc.dtd; ln -s linuxdoc96.dtd linuxdoc.dtd)
+ 	(cd $(bindir); for i in $(progs); do rm -f $$i; ln sgmltools $$i;done)
+ 	@echo "Installing documentation in $(LINUXDOCDOC) ..."
+-	(cd doc; sh Makedoc.sh)
++	# rebuilding docs involves sgml-tool already installed. Commented by PLD patch
++	#(cd doc; sh Makedoc.sh) 
+ 	if [ ! -d $(LINUXDOCDOC) ]; then mkdir -p $(LINUXDOCDOC); fi
+ 	chmod 755 $(LINUXDOCDOC)
+ 	cp -r doc/* $(LINUXDOCDOC) 
