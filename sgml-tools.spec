@@ -14,6 +14,7 @@ Source:		http://ftp.nllgg.nl/pub2/SGMLtools/1.0/%{name}-%{version}.tar.gz
 Patch0:		%{name}.patch
 Patch1:		%{name}-no-doc-rebuild.patch
 URL:		http://www.nllgg.nl/SGMLtools
+Requires:	/usr/bin/nsgmls
 Obsoletes:	linuxdoc-sgml
 BuildRequires:	openjade
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
