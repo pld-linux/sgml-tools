@@ -14,6 +14,7 @@ Source:		http://ftp.nllgg.nl/pub2/SGMLtools/1.0/%{name}-%{version}.tar.gz
 Patch:		%{name}.patch
 URL:		http://www.nllgg.nl/SGMLtools
 Obsoletes:	linuxdoc-sgml
+BuildRequires:	jade
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
