@@ -12,7 +12,8 @@ License:	Dreeware
 Group:		Applications/Publishing/SGML
 Group(de):	Applikationen/Publizieren/SGML
 Group(pl):	Aplikacje/Publikowanie/SGML
-Source0:	http://www.consultronics.com/~cdegroot/sgmltools/dist/%{name}-%{version}.tar.gz
+Source0:	http://www-ftp.lip6.fr/pub/sgml-tools/v1.0/%{name}-%{version}.tar.gz
+# Source0-md5:	41187c94c4c112253543c50a834c223c
 Patch0:		%{name}-%{version}-egcs.patch
 Patch1:		%{name}-%{version}-fixsgml2latex.patch
 Patch2:		%{name}-%{version}-fixconfigure.patch
