@@ -73,7 +73,7 @@ Group:		Applications/Publishing/SGML
 %description dtd
 LinuxDoc DTD.
 
-%description -l pl dtd
+%description dtd -l pl
 LinuxDoc DTD.
 
 %package -n  sgmls
@@ -85,7 +85,7 @@ Group:		Applications/Publishing/SGML
 %description -n sgmls
 sgmls - a validating SGML parser.
 
-%description -l pl -n sgmls
+%description -n sgmls -l pl
 sgmls - parser sprawdzaj±cy poprawno¶æ SGML.
 
 %prep
@@ -114,7 +114,7 @@ autoconf
 	--with-installed-nsgmls \
 	--libdir=$RPM_BUILD_ROOT%{_libdir}/sgml-tools \
 	--datadir=$RPM_BUILD_ROOT%{_libdir}
-  
+
 %{__make} CFLAGS="%{rpmcflags}"
 
 %install
