@@ -7,7 +7,7 @@ Summary(pl):	Narzêdzia konweruj±ce do linuxdoc-dtd
 Summary(tr):	GNU belge biçimlendirme sistemi
 Name:		sgml-tools
 Version:	1.0.9
-Release:	17
+Release:	18
 License:	Freeware
 Group:		Applications/Publishing/SGML
 Source0:	http://www.consultronics.com/~cdegroot/sgmltools/dist/%{name}-%{version}.tar.gz
@@ -21,6 +21,7 @@ Patch3:		%{name}-buildroot.patch
 Patch4:		%{name}-manfix.patch
 Patch5:		%{name}-%{version}-jtz.patch
 Patch6:		%{name}-datadir.patch
+Patch7:		%{name}-sgml-path.patch
 URL:		http://www.sgmltools.org/
 BuildRequires:	autoconf
 BuildRequires:	groff
@@ -100,6 +101,7 @@ sgmls - parser sprawdzaj±cy poprawno¶æ SGML.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 cd sgmls-1.1
@@ -162,6 +164,8 @@ conforming SGML systems and applications as defined in
 ISO 8879, provided this notice is included in all copies.
 EOF
 
+rm -f $RPM_BUILD_ROOT%{_datadir}/sgml/iso-entities-8879.1986
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -177,7 +181,6 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc doc/{html,guide*,example*,Makedoc.sh,README}
-%{_datadir}/sgml
 %{_datadir}/sgml-tools
 %{perl_vendorlib}/Text/EntityMap.pm
 %attr(755,root,root) %{_bindir}/rtf2rtf
