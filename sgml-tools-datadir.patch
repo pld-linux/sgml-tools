@@ -1,0 +1,15 @@
+diff -dur sgml-tools-1.0.9.orig/configure.in sgml-tools-1.0.9/configure.in
+--- sgml-tools-1.0.9.orig/configure.in	1998-06-30 08:05:57.000000000 +0200
++++ sgml-tools-1.0.9/configure.in	2004-01-11 16:49:30.243042883 +0100
+@@ -83,8 +83,8 @@
+ dnl
+ dnl  Set directory names.
+ dnl
+-BINDIR='${prefix}/bin'
+-LIBDIR='${prefix}/lib/sgml-tools'
++BINDIR="${bindir}"
++LIBDIR="${datadir}/sgml-tools"
+ AC_SUBST(BINDIR)
+ AC_SUBST(LIBDIR)
+ 
+Only in sgml-tools-1.0.9: configure.in~
