@@ -7,8 +7,8 @@ Summary(pl):	Narzêdzia konweruj±ce do linuxdoc-dtd
 Summary(tr):	GNU belge biçimlendirme sistemi
 Name:		sgml-tools
 Version:	1.0.9
-Release:	11
-License:	freeware
+Release:	12
+License:	Dreeware
 Group:		Applications/Publishing/SGML
 Group(de):	Applikationen/Publizieren/SGML
 Group(pl):	Aplikacje/Publikowanie/SGML
