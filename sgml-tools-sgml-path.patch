@@ -6,8 +6,29 @@ diff -dur sgml-tools-1.0.9.orig/lib/SGMLTools.pm sgml-tools-1.0.9/lib/SGMLTools.
    #
    $ENV{SGML_CATALOG_FILES} .= (defined $ENV{SGML_CATALOG_FILES} ? ":" : "") .
 -     "$main::prefix/lib/sgml/iso-entities-8879.1986/iso-entities.cat";
-+     "$main::prefix/share/sgml/iso-entities-8879.1986/iso-entities.cat";
++     "$main::prefix/share/sgml/sgml-iso-entities-8879.1986/catalog";
    $ENV{SGML_CATALOG_FILES} .= ":$main::LibDir/dtd/catalog";
    if (-f "$main::LibDir/dtd/$format.dcl")
      {
-Only in sgml-tools-1.0.9/lib: SGMLTools.pm~
+--- sgml-tools-1.0.9/entity-map/configure.in.orig	Sat Sep 13 22:37:42 1997
++++ sgml-tools-1.0.9/entity-map/configure.in	Thu Mar 11 14:17:33 2004
+@@ -24,7 +24,7 @@
+ AC_PATH_PROGS(PERL5, perl5 perl)
+ 
+ AC_SUBST(datadir)
+-datadir=\${prefix}/lib
++datadir=\${prefix}/share
+ AC_SUBST(docdir)
+ docdir=\${prefix}/doc/entity-map-\${VERSION}
+ AC_SUBST(perl5libdir)
+--- sgml-tools-1.0.9/iso-entities/configure.in.orig	Sat Sep 13 22:33:59 1997
++++ sgml-tools-1.0.9/iso-entities/configure.in	Thu Mar 11 14:19:43 2004
+@@ -24,7 +24,7 @@
+ AC_PATH_PROGS(PERL5, perl5 perl)
+ 
+ AC_SUBST(datadir)
+-datadir=\${prefix}/lib
++datadir=\${prefix}/share
+ AC_SUBST(docdir)
+ docdir=\${prefix}/doc/\${PACKAGE}-\${VERSION}
+ AC_SUBST(sgmldir)
