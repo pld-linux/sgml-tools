@@ -166,12 +166,12 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 
 %post
-cd /usr/lib/sgml-tools
+cd %{_libdir}/sgml-tools
 ln -f -s -n ../../share/sgml/sgml-tools/ dtd
 
 %preun
-if [ -L /usr/lib/sgml-tools/dtd ]; then
-        rm -rf /usr/lib/sgml-tools/dtd
+if [ -L %{_libdir}/sgml-tools/dtd ]; then
+        rm -rf %{_libdir}/sgml-tools/dtd
 fi
 
 %files
