@@ -1,21 +1,19 @@
-Summary:     text formatting system used by the Linux Documentation Project
-%define      packagename sgml-tools
-%define      packver 1.0.7
-Name:        %{packagename}
-Obsoletes:   linuxdoc-sgml
-Version:     %{packver}
-Release:     4d
-Copyright:   freeware
-Group:       Utilities/Text/SGML
-Source:      http://ftp.nllgg.nl/pub2/SGMLtools/1.0/%{name}-%{version}.tar.gz
-Url:         http://www.nllgg.nl/SGMLtools
-Patch:       %{name}.patch
-Buildroot:   /tmp/%{name}-%{version}-%{release}-root
-Summary(de): Textformatierungssystem, das vom Linux Documentation Project benutzt wird
-Summary(fr): Système de formattage de texte utilisé par le Linux Documentation Project.
-Summary(tr): GNU belge biçimlendirme sistemi
-Summary(nl): Tekstformateringssysteem welke door het Linux Documentatie Project wordt gebruikt.
-Summary(pl): Narzêdzia konweruj±ce do linuxdoc-dtd 
+Summary:	Text formatting system used by the Linux Documentation Project
+Summary(de):	Textformatierungssystem, das vom Linux Documentation Project benutzt wird
+Summary(fr):	Système de formattage de texte utilisé par le Linux Documentation Project.
+Summary(tr):	GNU belge biçimlendirme sistemi
+Summary(pl):	Narzêdzia konweruj±ce do linuxdoc-dtd 
+Summary(nl):	Tekstformateringssysteem welke door het Linux Documentatie Project wordt gebruikt.
+Name:		sgml-tools
+Version:	1.0.7
+Release:	5
+Copyright:	freeware
+Group:		Applications/Publishing/SGML
+Url:		http://www.nllgg.nl/SGMLtools
+Source:		http://ftp.nllgg.nl/pub2/SGMLtools/1.0/%{name}-%{version}.tar.gz
+Patch:		%{name}.patch
+Obsoletes:	linuxdoc-sgml
+Buildroot:	/tmp/%{name}-%{version}-%{release}-root
 
 %description
 SGMLtools is a SGML-based text formatter which allows you to
@@ -49,9 +47,9 @@ aantal verschillende andere bestanden kan worden gemaakt. Uitvoer is
 mogelijk in: ASCII, DVI, HTML, LaTeX, PostScript en RTF (Windows help)
 
 %package dtd 
-Summary:     linuxdoc DTD
-Group:       Utilities/Text/SGML
-Summary(pl): linuxdoc DTD
+Summary:	linuxdoc DTD
+Summary(pl):	linuxdoc DTD
+Group:		Applications/Publishing/SGML
 
 %description dtd
 Linuxdoc DTD
@@ -60,10 +58,10 @@ Linuxdoc DTD
 Linuxdoc DTD
 
 %package -n  sgmls
-Summary:     sgmls
-version:     1.1
-Group:       Utilities/Text/SGML
-Summary(pl): sgmls
+Summary:	sgmls
+Summary(pl):	sgmls
+Version:	1.1
+Group:		Applications/Publishing/SGML
 
 %description -n sgmls
 Sgmls
@@ -76,36 +74,35 @@ Sgmls
 %patch -p1
 
 %build
-CFLAGS=$RPM_OPT_FLAGS \
-./configure --prefix=/usr --with-installed-nsgmls 
+%configure --with-installed-nsgmls 
 
 make OPTIMIZE="$RPM_OPT_FLAGS"
 
 cd sgmls-1.1 
-make OPTIMIZE="$RPM_OPT_FLAGS" PREFIX=$RPM_BUILD_ROOT/usr
+make OPTIMIZE="$RPM_OPT_FLAGS" PREFIX=$RPM_BUILD_ROOT%{_prefix}
 make install 
 cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make prefix=$RPM_BUILD_ROOT/usr install
-install $RPM_BUILD_DIR/%{packagename}-%{packver}/sgmls-1.1/sgmls $RPM_BUILD_ROOT/usr/bin
-install $RPM_BUILD_DIR/%{packagename}-%{packver}/sgmls-1.1/sgmls.pl $RPM_BUILD_ROOT/usr/bin/
-install $RPM_BUILD_DIR/%{packagename}-%{packver}/sgmls-1.1/rast $RPM_BUILD_ROOT/usr/bin
-install $RPM_BUILD_DIR/%{packagename}-%{packver}/sgmls-1.1/sgmls.man $RPM_BUILD_ROOT/usr/man/man1/sgmls.1
-install $RPM_BUILD_DIR/%{packagename}-%{packver}/sgmls-1.1/sgmlsasp.man $RPM_BUILD_ROOT/usr/man/man1/sgmlsasp.1
-install $RPM_BUILD_DIR/%{packagename}-%{packver}/sgmls-1.1/rast.man $RPM_BUILD_ROOT/usr/man/man1/rast.1
 
-strip $RPM_BUILD_ROOT/usr/bin/rast
-strip $RPM_BUILD_ROOT/usr/bin/sgmls
-strip $RPM_BUILD_ROOT/usr/bin/rtf2rtf
-strip $RPM_BUILD_ROOT/usr/bin/sgmlsasp 
-strip $RPM_BUILD_ROOT/usr/bin/sgmlpre
+make install prefix=$RPM_BUILD_ROOT/%{_prefix} \
+	mandir=$RPM_BUILD_ROOT%{_mandir}
 
-install -d $RPM_BUILD_ROOT/usr/share/sgml/sgml-tools
-install $RPM_BUILD_ROOT/usr/lib/sgml-tools/dtd/* $RPM_BUILD_ROOT/usr/share/sgml/sgml-tools 
+install sgmls-1.1/sgmls		$RPM_BUILD_ROOT%{_bindir}
+install sgmls-1.1/sgmls.pl	$RPM_BUILD_ROOT%{_bindir}
+install sgmls-1.1/rast		$RPM_BUILD_ROOT%{_bindir}
+install sgmls-1.1/sgmls.man	$RPM_BUILD_ROOT%{_mandir}/man1/sgmls.1
+install sgmls-1.1/sgmlsasp.man	$RPM_BUILD_ROOT%{_mandir}/man1/sgmlsasp.1
+install sgmls-1.1/rast.man	$RPM_BUILD_ROOT%{_mandir}/man1/rast.1
 
-bzip2 -9 $RPM_BUILD_ROOT/usr/man/man1/*
+strip $RPM_BUILD_ROOT%{_bindir}/* || :
+
+install -d $RPM_BUILD_ROOT%{_datadir}/sgml/sgml-tools
+install $RPM_BUILD_ROOT%{_libdir}/sgml-tools/dtd/* $RPM_BUILD_ROOT%{_datadir}/sgml/sgml-tools 
+
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
+	sgmls-1.1/LICENSE sgmls-1.1/NEWS 
 
 %post 
 #!/bin/bash 
@@ -117,7 +114,7 @@ popd
 %preun 
 #!/bin/bash
 if [ -L /usr/lib/sgml-tools/dtd ]; then
-rm -rf /usr/lib/sgml-tools/dtd
+	rm -rf /usr/lib/sgml-tools/dtd
 if  
 
 %clean
@@ -125,33 +122,34 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-/usr/lib/sgml-tools
-/usr/lib/perl5/Text/EntityMap.pm
-/usr/lib/sgml
-/usr/doc/sgml-tools
-%attr(711,root,root) /usr/bin/rtf2rtf
-%attr(711,root,root) /usr/bin/sgmlpre
-%attr(755,root,root) /usr/bin/sgml2* 
-%attr(755,root,root) /usr/bin/sgmltools 
-%attr(755,root,root) /usr/bin/sgmlcheck
+%doc %dir /usr/doc/sgml-tools
+%doc /usr/doc/sgml-tools/*
+%{_libdir}/sgml
+%{_libdir}/sgml-tools
+%{_libdir}/perl5/Text/EntityMap.pm
+%attr(755,root,root) %{_bindir}/rtf2rtf
+%attr(755,root,root) %{_bindir}/sgmlpre
+%attr(755,root,root) %{_bindir}/sgml2* 
+%attr(755,root,root) %{_bindir}/sgmltools 
+%attr(755,root,root) %{_bindir}/sgmlcheck
 
-%attr(644,root, man) /usr/man/man1/sgml2*.1.bz2
-%attr(644,root, man) /usr/man/man1/sgmlcheck.1.bz2
-%attr(644,root, man) /usr/man/man1/sgmltools.1.bz2
+%{_mandir}/man1/sgml2*.1.gz
+%{_mandir}/man1/sgmlcheck.1.gz
+%{_mandir}/man1/sgmltools.1.gz
 
 %files -n sgmls 
 %defattr(644,root,root,755)
-%doc sgmls-1.1/LICENSE sgmls-1.1/NEWS 
-%attr(711,root,root) /usr/bin/rast
-%attr(711,root,root) /usr/bin/sgmls
-%attr(711,root,root) /usr/bin/sgmlsasp 
-%attr(755,root,root) /usr/bin/sgmls.pl 
+%doc sgmls-1.1/LICENSE.gz sgmls-1.1/NEWS.gz
+%attr(755,root,root) %{_bindir}/rast
+%attr(755,root,root) %{_bindir}/sgmls
+%attr(755,root,root) %{_bindir}/sgmlsasp 
+%attr(755,root,root) %{_bindir}/sgmls.pl 
 
-%attr(644,root, man) /usr/man/man1/rast.1.bz2
-%attr(644,root, man) /usr/man/man1/sgmls.1.bz2
-%attr(644,root, man) /usr/man/man1/sgmlsasp.1.bz2
+%{_mandir}/man1/rast.1.gz
+%{_mandir}/man1/sgmls.1.gz
+%{_mandir}/man1/sgmlsasp.1.gz
 
 %files dtd
 %defattr(644,root,root,755)
-/usr/share/sgml/sgml-tools
-/usr/lib/entity-map
+%{_datadir}/sgml/sgml-tools
+%{_libdir}/entity-map
