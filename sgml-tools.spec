@@ -7,7 +7,7 @@ Summary(pl):	Narzêdzia konweruj±ce do linuxdoc-dtd
 Summary(tr):	GNU belge biçimlendirme sistemi
 Name:		sgml-tools
 Version:	1.0.9
-Release:	13
+Release:	14
 License:	Dreeware
 Group:		Applications/Publishing/SGML
 Source0:	http://www.consultronics.com/~cdegroot/sgmltools/dist/%{name}-%{version}.tar.gz
@@ -117,14 +117,17 @@ cd ..
 	--libdir=$RPM_BUILD_ROOT%{_libdir}/sgml-tools \
 	--datadir=$RPM_BUILD_ROOT%{_libdir}
 
-%{__make} CFLAGS="%{rpmcflags}"
+%{__make} \
+	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_mandir}/pl/man1
 
-%makeinstall libdir=$RPM_BUILD_ROOT%{_libdir}/sgml-tools \
-       datadir=$RPM_BUILD_ROOT%{_libdir}
+%makeinstall \
+	libdir=$RPM_BUILD_ROOT%{_libdir}/sgml-tools \
+	datadir=$RPM_BUILD_ROOT%{_libdir} \
+	perl5libdir=$RPM_BUILD_ROOT%{perl_vendorlib}
 
 cd sgmls-1.1
 	%{__make} install \
@@ -175,8 +178,7 @@ fi
 %doc doc/{html,guide*,example*,Makedoc.sh,README}
 %{_libdir}/sgml
 %{_libdir}/sgml-tools
-%dir %{_libdir}/perl5/Text
-%{_libdir}/perl5/Text/EntityMap.pm
+%{perl_vendorlib}/Text/EntityMap.pm
 %attr(755,root,root) %{_bindir}/rtf2rtf
 %attr(755,root,root) %{_bindir}/sgmlpre
 %attr(755,root,root) %{_bindir}/sgml2*
