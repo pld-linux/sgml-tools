@@ -164,7 +164,7 @@ conforming SGML systems and applications as defined in
 ISO 8879, provided this notice is included in all copies.
 EOF
 
-rm -f $RPM_BUILD_ROOT%{_datadir}/sgml/iso-entities-8879.1986
+rm -rf $RPM_BUILD_ROOT%{_datadir}/sgml/iso-entities-8879.1986
 
 %clean
 rm -rf $RPM_BUILD_ROOT
