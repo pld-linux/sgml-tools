@@ -8,7 +8,7 @@ Summary(tr):	GNU belge biçimlendirme sistemi
 Name:		sgml-tools
 Version:	1.0.9
 Release:	14
-License:	Dreeware
+License:	Freeware
 Group:		Applications/Publishing/SGML
 Source0:	http://www.consultronics.com/~cdegroot/sgmltools/dist/%{name}-%{version}.tar.gz
 # Source0-md5: 41187c94c4c112253543c50a834c223c
