@@ -123,8 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc %dir /usr/doc/sgml-tools
-%doc /usr/doc/sgml-tools/*
+%doc doc/{html,guide*,example*,Makedoc.sh,README}
 %{_libdir}/sgml
 %{_libdir}/sgml-tools
 %{_libdir}/perl5/Text/EntityMap.pm
