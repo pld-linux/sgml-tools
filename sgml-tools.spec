@@ -7,12 +7,14 @@ Summary(pl):	Narzêdzia konweruj±ce do linuxdoc-dtd
 Summary(tr):	GNU belge biçimlendirme sistemi
 Name:		sgml-tools
 Version:	1.0.9
-Release:	12
+Release:	13
 License:	Dreeware
 Group:		Applications/Publishing/SGML
 Group(de):	Applikationen/Publizieren/SGML
 Group(pl):	Aplikacje/Publikowanie/SGML
 Source0:	http://www.consultronics.com/~cdegroot/sgmltools/dist/%{name}-%{version}.tar.gz
+Source1:	sgml2info.1.pl
+Source2:	sgml2txt.1.pl
 Patch0:		%{name}-%{version}-egcs.patch
 Patch1:		%{name}-%{version}-fixsgml2latex.patch
 Patch2:		%{name}-%{version}-fixconfigure.patch
@@ -123,6 +125,7 @@ autoconf
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_mandir}/pl/man1
 
 %makeinstall libdir=$RPM_BUILD_ROOT%{_libdir}/sgml-tools \
        datadir=$RPM_BUILD_ROOT%{_libdir}
@@ -142,6 +145,9 @@ install sgmls-1.1/rast          $RPM_BUILD_ROOT%{_bindir}
 install sgmls-1.1/sgmls.man     $RPM_BUILD_ROOT%{_mandir}/man1/sgmls.1
 install sgmls-1.1/sgmlsasp.man  $RPM_BUILD_ROOT%{_mandir}/man1/sgmlsasp.1
 install sgmls-1.1/rast.man      $RPM_BUILD_ROOT%{_mandir}/man1/rast.1
+
+install %{SOURCE1}	$RPM_BUILD_ROOT%{_mandir}/pl/man1/sgml2info.1
+install %{SOURCE2}	$RPM_BUILD_ROOT%{_mandir}/pl/man1/sgml2txt.1
 
 install -d $RPM_BUILD_ROOT%{_datadir}/sgml/sgml-tools
 install $RPM_BUILD_ROOT%{_libdir}/sgml-tools/dtd/* $RPM_BUILD_ROOT%{_datadir}/sgml/sgml-tools
@@ -186,6 +192,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/sgml2*.1*
 %{_mandir}/man1/sgmlcheck.1*
 %{_mandir}/man1/sgmltools.1*
+%lang(pl) %{_mandir}/pl/man1/sgml2*.1*
 
 %files -n sgmls
 %defattr(644,root,root,755)
