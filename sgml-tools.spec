@@ -145,12 +145,12 @@ cd sgmls-1.1
 	mandir=$RPM_BUILD_ROOT%{_mandir}
 cd ..
 
-install sgmls-1.1/sgmls         $RPM_BUILD_ROOT%{_bindir}
-install sgmls-1.1/sgmls.pl      $RPM_BUILD_ROOT%{_bindir}
-install sgmls-1.1/rast          $RPM_BUILD_ROOT%{_bindir}
-install sgmls-1.1/sgmls.man     $RPM_BUILD_ROOT%{_mandir}/man1/sgmls.1
-install sgmls-1.1/sgmlsasp.man  $RPM_BUILD_ROOT%{_mandir}/man1/sgmlsasp.1
-install sgmls-1.1/rast.man      $RPM_BUILD_ROOT%{_mandir}/man1/rast.1
+install sgmls-1.1/sgmls		$RPM_BUILD_ROOT%{_bindir}
+install sgmls-1.1/sgmls.pl	$RPM_BUILD_ROOT%{_bindir}
+install sgmls-1.1/rast		$RPM_BUILD_ROOT%{_bindir}
+install sgmls-1.1/sgmls.man	$RPM_BUILD_ROOT%{_mandir}/man1/sgmls.1
+install sgmls-1.1/sgmlsasp.man	$RPM_BUILD_ROOT%{_mandir}/man1/sgmlsasp.1
+install sgmls-1.1/rast.man	$RPM_BUILD_ROOT%{_mandir}/man1/rast.1
 
 install %{SOURCE1}	$RPM_BUILD_ROOT%{_mandir}/pl/man1/sgml2info.1
 install %{SOURCE2}	$RPM_BUILD_ROOT%{_mandir}/pl/man1/sgml2txt.1
