@@ -146,8 +146,6 @@ install %{SOURCE2}	$RPM_BUILD_ROOT%{_mandir}/pl/man1/sgml2txt.1
 install -d $RPM_BUILD_ROOT%{_datadir}/sgml/sgml-tools
 install $RPM_BUILD_ROOT%{_libdir}/sgml-tools/dtd/* $RPM_BUILD_ROOT%{_datadir}/sgml/sgml-tools
 
-gzip -9nf sgmls-1.1/LICENSE sgmls-1.1/NEWS
-
 find $RPM_BUILD_ROOT%{_bindir} -type f -o -type l | \
 	grep -v nsgmls | sed "s|$RPM_BUILD_ROOT||g" > file.list
 
@@ -190,7 +188,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n sgmls
 %defattr(644,root,root,755)
-%doc sgmls-1.1/LICENSE.gz sgmls-1.1/NEWS.gz
+%doc sgmls-1.1/LICENSE sgmls-1.1/NEWS
 %attr(755,root,root) %{_bindir}/rast
 %attr(755,root,root) %{_bindir}/sgmls
 %attr(755,root,root) %{_bindir}/sgmlsasp
