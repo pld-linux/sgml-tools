@@ -78,17 +78,17 @@ Sgmls
 %configure \
 	--with-installed-nsgmls
 
-make OPTIMIZE="$RPM_OPT_FLAGS"
+%{__make} OPTIMIZE="$RPM_OPT_FLAGS"
 
 cd sgmls-1.1 
-make OPTIMIZE="$RPM_OPT_FLAGS" PREFIX=$RPM_BUILD_ROOT%{_prefix}
-make install 
+%{__make} OPTIMIZE="$RPM_OPT_FLAGS" PREFIX=$RPM_BUILD_ROOT%{_prefix}
+%{__make} install 
 cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install \
+%{__make} install \
 	prefix=$RPM_BUILD_ROOT/%{_prefix} \
 	mandir=$RPM_BUILD_ROOT%{_mandir}
 
