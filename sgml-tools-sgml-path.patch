@@ -1,0 +1,13 @@
+diff -dur sgml-tools-1.0.9.orig/lib/SGMLTools.pm sgml-tools-1.0.9/lib/SGMLTools.pm
+--- sgml-tools-1.0.9.orig/lib/SGMLTools.pm	1998-10-13 13:54:59.000000000 +0200
++++ sgml-tools-1.0.9/lib/SGMLTools.pm	2004-01-11 18:37:17.546736769 +0100
+@@ -190,7 +190,7 @@
+   #  Setup the SGML environment.
+   #
+   $ENV{SGML_CATALOG_FILES} .= (defined $ENV{SGML_CATALOG_FILES} ? ":" : "") .
+-     "$main::prefix/lib/sgml/iso-entities-8879.1986/iso-entities.cat";
++     "$main::prefix/share/sgml/iso-entities-8879.1986/iso-entities.cat";
+   $ENV{SGML_CATALOG_FILES} .= ":$main::LibDir/dtd/catalog";
+   if (-f "$main::LibDir/dtd/$format.dcl")
+     {
+Only in sgml-tools-1.0.9/lib: SGMLTools.pm~
