@@ -1,28 +1,26 @@
 Summary:	Text formatting system used by the Linux Documentation Project
 Summary(de):	Textformatierungssystem, das vom Linux Documentation Project benutzt wird
 Summary(fr):	Système de formattage de texte utilisé par le Linux Documentation Project.
-Summary(tr):	GNU belge biçimlendirme sistemi
-Summary(pl):	Narzêdzia konweruj±ce do linuxdoc-dtd 
 Summary(nl):	Tekstformateringssysteem welke door het Linux Documentatie Project wordt gebruikt.
+Summary(pl):	Narzêdzia konweruj±ce do linuxdoc-dtd 
+Summary(tr):	GNU belge biçimlendirme sistemi
 Name:		sgml-tools
 Version:	1.0.7
 Release:	5
 Copyright:	freeware
 Group:		Applications/Publishing/SGML
-Url:		http://www.nllgg.nl/SGMLtools
+Group(pl):	Aplikacje/Publikowanie/SGML
 Source:		http://ftp.nllgg.nl/pub2/SGMLtools/1.0/%{name}-%{version}.tar.gz
 Patch:		%{name}.patch
+URL:		http://www.nllgg.nl/SGMLtools
 Obsoletes:	linuxdoc-sgml
-Buildroot:	/tmp/%{name}-%{version}-%{release}-root
+Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
 SGMLtools is a SGML-based text formatter which allows you to
 produce a variety of output formats. You can create PostScript and
 dvi (with LaTeX), plain text (with groff), HTML, and texinfo files
 from a single SGML source file.
-
-%description -l pl
-Narzêdzia konweruj±ce do linuxdoc-dtd 
 
 %description -l de
 SGMLtools ist ein Textformatierer auf SGML-Basis, der eine Vielzahl
@@ -35,6 +33,9 @@ SGMLtools est un formatteur de texte basé sur SGML qui vous permet
 de produire de nombreux formats de fichiers de sortie. vous pouvez
 créer du PostScript et du dvi (avec LaTeX), du texte simple (avec groff),
 du HTML, et des fichiers texinfo depuis un simple fichier SGML.
+
+%description -l pl
+Narzêdzia konweruj±ce do linuxdoc-dtd.
 
 %description -l tr
 SGMLtools, SGML tabanlý deðiþik biçimlerde çýktýlar üretmenizi saðlayan bir
@@ -50,21 +51,20 @@ mogelijk in: ASCII, DVI, HTML, LaTeX, PostScript en RTF (Windows help)
 Summary:	linuxdoc DTD
 Summary(pl):	linuxdoc DTD
 Group:		Applications/Publishing/SGML
+Group(pl):	Aplikacje/Publikowanie/SGML
 
 %description dtd
-Linuxdoc DTD
+Linuxdoc DTD.
 
 %description -l pl dtd
-Linuxdoc DTD
+Linuxdoc DTD.
 
 %package -n  sgmls
 Summary:	sgmls
 Summary(pl):	sgmls
 Version:	1.1
 Group:		Applications/Publishing/SGML
-
-%description -n sgmls
-Sgmls
+Group(pl):	Aplikacje/Publikowanie/SGML
 
 %description -n sgmls
 Sgmls
@@ -74,7 +74,8 @@ Sgmls
 %patch -p1
 
 %build
-%configure --with-installed-nsgmls 
+%configure \
+	--with-installed-nsgmls
 
 make OPTIMIZE="$RPM_OPT_FLAGS"
 
@@ -86,7 +87,8 @@ cd ..
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install prefix=$RPM_BUILD_ROOT/%{_prefix} \
+make install \
+	prefix=$RPM_BUILD_ROOT/%{_prefix} \
 	mandir=$RPM_BUILD_ROOT%{_mandir}
 
 install sgmls-1.1/sgmls		$RPM_BUILD_ROOT%{_bindir}
@@ -133,9 +135,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sgmltools 
 %attr(755,root,root) %{_bindir}/sgmlcheck
 
-%{_mandir}/man1/sgml2*.1.gz
-%{_mandir}/man1/sgmlcheck.1.gz
-%{_mandir}/man1/sgmltools.1.gz
+%{_mandir}/man1/sgml2*.1*
+%{_mandir}/man1/sgmlcheck.1*
+%{_mandir}/man1/sgmltools.1*
 
 %files -n sgmls 
 %defattr(644,root,root,755)
@@ -145,9 +147,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sgmlsasp 
 %attr(755,root,root) %{_bindir}/sgmls.pl 
 
-%{_mandir}/man1/rast.1.gz
-%{_mandir}/man1/sgmls.1.gz
-%{_mandir}/man1/sgmlsasp.1.gz
+%{_mandir}/man1/rast.1*
+%{_mandir}/man1/sgmls.1*
+%{_mandir}/man1/sgmlsasp.1*
 
 %files dtd
 %defattr(644,root,root,755)
