@@ -23,6 +23,7 @@ URL:		http://www.sgmltools.org
 Requires:	/usr/bin/nsgmls
 Obsoletes:	linuxdoc-sgml
 BuildRequires:	openjade
+BuildRequires:	autoconf
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -109,6 +110,9 @@ cd sgmls-1.1
                  mandir=$RPM_BUILD_ROOT%{_mandir}
 cd ..
 
+(cd entity-map ; autoconf)
+(cd iso-entities ; autoconf)
+autoconf
 %configure \
 	--with-installed-nsgmls \
 	--libdir=$RPM_BUILD_ROOT%{_libdir}/sgml-tools \
