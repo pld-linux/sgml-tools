@@ -11,7 +11,7 @@ Release:	20
 License:	Freeware
 Group:		Applications/Publishing/SGML
 Source0:	http://www.consultronics.com/~cdegroot/sgmltools/dist/%{name}-%{version}.tar.gz
-# Source0-md5: 41187c94c4c112253543c50a834c223c
+# Source0-md5:	41187c94c4c112253543c50a834c223c
 Source1:	sgml2info.1.pl
 Source2:	sgml2txt.1.pl
 Patch0:		%{name}-%{version}-egcs.patch
