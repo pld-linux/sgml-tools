@@ -20,6 +20,7 @@ Patch2:		%{name}-%{version}-fixconfigure.patch
 Patch3:		%{name}-buildroot.patch
 Patch4:		%{name}-manfix.patch
 Patch5:		%{name}-%{version}-jtz.patch
+Patch6:		%{name}-datadir.patch
 URL:		http://www.sgmltools.org/
 BuildRequires:	autoconf
 BuildRequires:	groff
@@ -98,6 +99,7 @@ sgmls - parser sprawdzaj±cy poprawno¶æ SGML.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 cd sgmls-1.1
@@ -114,9 +116,7 @@ cd ../iso-entities
 cd ..
 %{__autoconf}
 %configure \
-	--with-installed-nsgmls \
-	--libdir=$RPM_BUILD_ROOT%{_libdir}/sgml-tools \
-	--datadir=$RPM_BUILD_ROOT%{_libdir}
+	--with-installed-nsgmls
 
 %{__make} \
 	CFLAGS="%{rpmcflags}"
@@ -126,8 +126,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_mandir}/pl/man1
 
 %makeinstall \
-	libdir=$RPM_BUILD_ROOT%{_libdir}/sgml-tools \
-	datadir=$RPM_BUILD_ROOT%{_libdir} \
+	libdir=$RPM_BUILD_ROOT%{_datadir}/sgml-tools \
+	datadir=$RPM_BUILD_ROOT%{_datadir} \
 	perl5libdir=$RPM_BUILD_ROOT%{perl_vendorlib}
 
 cd sgmls-1.1
@@ -150,7 +150,7 @@ install %{SOURCE1}	$RPM_BUILD_ROOT%{_mandir}/pl/man1/sgml2info.1
 install %{SOURCE2}	$RPM_BUILD_ROOT%{_mandir}/pl/man1/sgml2txt.1
 
 install -d $RPM_BUILD_ROOT%{_datadir}/sgml/sgml-tools
-install $RPM_BUILD_ROOT%{_libdir}/sgml-tools/dtd/* $RPM_BUILD_ROOT%{_datadir}/sgml/sgml-tools
+install $RPM_BUILD_ROOT%{_datadir}/sgml-tools/dtd/* $RPM_BUILD_ROOT%{_datadir}/sgml/sgml-tools
 
 find $RPM_BUILD_ROOT%{_bindir} -type f -o -type l | \
 	grep -v nsgmls | sed "s|$RPM_BUILD_ROOT||g" > file.list
@@ -166,19 +166,19 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 
 %post
-cd %{_libdir}/sgml-tools
+cd %{_datadir}/sgml-tools
 ln -f -s -n ../../share/sgml/sgml-tools/ dtd
 
 %preun
-if [ -L %{_libdir}/sgml-tools/dtd ]; then
-        rm -rf %{_libdir}/sgml-tools/dtd
+if [ -L %{_datadir}/sgml-tools/dtd ]; then
+        rm -rf %{_datadir}/sgml-tools/dtd
 fi
 
 %files
 %defattr(644,root,root,755)
 %doc doc/{html,guide*,example*,Makedoc.sh,README}
-%{_libdir}/sgml
-%{_libdir}/sgml-tools
+%{_datadir}/sgml
+%{_datadir}/sgml-tools
 %{perl_vendorlib}/Text/EntityMap.pm
 %attr(755,root,root) %{_bindir}/rtf2rtf
 %attr(755,root,root) %{_bindir}/sgmlpre
@@ -206,4 +206,4 @@ fi
 %files dtd
 %defattr(644,root,root,755)
 %{_datadir}/sgml/sgml-tools
-%{_libdir}/entity-map
+%{_datadir}/entity-map
