@@ -7,8 +7,8 @@ Summary(pl):	Narzêdzia konweruj±ce do linuxdoc-dtd
 Summary(tr):	GNU belge biçimlendirme sistemi
 Name:		sgml-tools
 Version:	1.0.9
-Release:	10
-Copyright:	freeware  
+Release:	11
+License:	freeware
 Group:		Applications/Publishing/SGML
 Group(de):	Applikationen/Publizieren/SGML
 Group(pl):	Aplikacje/Publikowanie/SGML
@@ -170,6 +170,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/{html,guide*,example*,Makedoc.sh,README}
 %{_libdir}/sgml
 %{_libdir}/sgml-tools
+%dir %{_libdir}/perl5/Text
 %{_libdir}/perl5/Text/EntityMap.pm
 %attr(755,root,root) %{_bindir}/rtf2rtf
 %attr(755,root,root) %{_bindir}/sgmlpre
