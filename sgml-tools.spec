@@ -20,7 +20,7 @@ Patch3:		%{name}-buildroot.patch
 Patch4:		%{name}-manfix.patch
 Patch5:		%{name}-%{version}-jtz.patch
 URL:		http://www.sgmltools.org
-Requires:	opensp
+Requires:	/usr/bin/nsgmls
 Requires:	sgmls
 Obsoletes:	linuxdoc-sgml
 BuildRequires:	openjade
