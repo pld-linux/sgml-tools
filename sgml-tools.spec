@@ -27,7 +27,7 @@ BuildRequires:	openjade
 Requires:	/usr/bin/nsgmls
 Requires:	sgmls
 Obsoletes:	linuxdoc-sgml
-Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 SGMLtools is a text formatting package based on SGML (Standard
