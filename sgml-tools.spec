@@ -7,7 +7,7 @@ Summary(pl):	Narzêdzia konweruj±ce do linuxdoc-dtd
 Summary(tr):	GNU belge biçimlendirme sistemi
 Name:		sgml-tools
 Version:	1.0.9
-Release:	18
+Release:	19
 License:	Freeware
 Group:		Applications/Publishing/SGML
 Source0:	http://www.consultronics.com/~cdegroot/sgmltools/dist/%{name}-%{version}.tar.gz
@@ -22,6 +22,7 @@ Patch4:		%{name}-manfix.patch
 Patch5:		%{name}-%{version}-jtz.patch
 Patch6:		%{name}-datadir.patch
 Patch7:		%{name}-sgml-path.patch
+Patch8:		%{name}-posix.patch
 URL:		http://www.sgmltools.org/
 BuildRequires:	autoconf
 BuildRequires:	groff
@@ -102,15 +103,18 @@ sgmls - parser sprawdzaj±cy poprawno¶æ SGML.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %build
 cd sgmls-1.1
-	%{__make} config.h \
-		 prefix=$RPM_BUILD_ROOT%{_prefix} \
-		 mandir=$RPM_BUILD_ROOT%{_mandir}
-	%{__make} CFLAGS="%{rpmcflags}" \
-                 prefix=$RPM_BUILD_ROOT%{_prefix} \
-                 mandir=$RPM_BUILD_ROOT%{_mandir}
+%{__make} config.h \
+	prefix=$RPM_BUILD_ROOT%{_prefix} \
+	mandir=$RPM_BUILD_ROOT%{_mandir}
+%{__make} \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags}" \
+	prefix=$RPM_BUILD_ROOT%{_prefix} \
+	mandir=$RPM_BUILD_ROOT%{_mandir}
 cd ../entity-map
 %{__autoconf}
 cd ../iso-entities
