@@ -7,7 +7,7 @@ Summary(pl):	Narzêdzia konweruj±ce do linuxdoc-dtd
 Summary(tr):	GNU belge biçimlendirme sistemi
 Name:		sgml-tools
 Version:	1.0.9
-Release:	19
+Release:	20
 License:	Freeware
 Group:		Applications/Publishing/SGML
 Source0:	http://www.consultronics.com/~cdegroot/sgmltools/dist/%{name}-%{version}.tar.gz
@@ -29,6 +29,7 @@ BuildRequires:	groff
 BuildRequires:	openjade
 Requires:	/usr/bin/nsgmls
 Requires:	sgmls
+Requires:	sgml-common
 Obsoletes:	linuxdoc-sgml
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -81,7 +82,7 @@ LinuxDoc DTD.
 %description dtd -l pl
 LinuxDoc DTD.
 
-%package -n  sgmls
+%package -n sgmls
 Summary:	sgmls
 Summary(pl):	sgmls
 Version:	1.1
@@ -133,16 +134,15 @@ install -d $RPM_BUILD_ROOT%{_mandir}/pl/man1
 
 %makeinstall \
 	libdir=$RPM_BUILD_ROOT%{_datadir}/sgml-tools \
-	datadir=$RPM_BUILD_ROOT%{_datadir} \
 	perl5libdir=$RPM_BUILD_ROOT%{perl_vendorlib}
 
 cd sgmls-1.1
-	%{__make} install \
-                 prefix=$RPM_BUILD_ROOT%{_prefix} \
-                 mandir=$RPM_BUILD_ROOT%{_mandir}
-	%{__make} install.man \
-                 prefix=$RPM_BUILD_ROOT%{_prefix} \
-                 mandir=$RPM_BUILD_ROOT%{_mandir}
+%{__make} install \
+	prefix=$RPM_BUILD_ROOT%{_prefix} \
+	mandir=$RPM_BUILD_ROOT%{_mandir}
+%{__make} install.man \
+	prefix=$RPM_BUILD_ROOT%{_prefix} \
+	mandir=$RPM_BUILD_ROOT%{_mandir}
 cd ..
 
 install sgmls-1.1/sgmls         $RPM_BUILD_ROOT%{_bindir}
@@ -173,13 +173,12 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/sgml/iso-entities-8879.1986
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-cd %{_datadir}/sgml-tools
-ln -f -s -n ../../share/sgml/sgml-tools/ dtd
-
-%preun
-if [ -L %{_datadir}/sgml-tools/dtd ]; then
-        rm -rf %{_datadir}/sgml-tools/dtd
+%pre
+if [ -L %{_libdir}/sgml-tools/dtd/sgml-tools ]; then
+	rm -f %{_libdir}/sgml-tools/dtd/sgml-tools
+fi
+if [ -L %{_datadir}/sgml-tools/dtd/sgml-tools ]; then
+	rm -f %{_datadir}/sgml-tools/dtd/sgml-tools
 fi
 
 %files
