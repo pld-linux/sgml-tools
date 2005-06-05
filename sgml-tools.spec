@@ -25,8 +25,10 @@ Patch7:		%{name}-sgml-path.patch
 Patch8:		%{name}-posix.patch
 URL:		http://www.sgmltools.org/
 BuildRequires:	autoconf
+BuildRequires:	flex
 BuildRequires:	groff
 BuildRequires:	openjade
+BuildRequires:	rpm-perlprov
 Requires:	/usr/bin/nsgmls
 Requires:	sgmls
 Requires:	sgml-common
