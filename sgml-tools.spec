@@ -7,7 +7,7 @@ Summary(pl):	Narzêdzia konwertuj±ce do linuxdoc-dtd
 Summary(tr):	GNU belge biçimlendirme sistemi
 Name:		sgml-tools
 Version:	1.0.9
-Release:	20
+Release:	21
 License:	Freeware
 Group:		Applications/Publishing/SGML
 Source0:	http://www.consultronics.com/~cdegroot/sgmltools/dist/%{name}-%{version}.tar.gz
@@ -19,10 +19,9 @@ Patch1:		%{name}-%{version}-fixsgml2latex.patch
 Patch2:		%{name}-%{version}-fixconfigure.patch
 Patch3:		%{name}-buildroot.patch
 Patch4:		%{name}-manfix.patch
-Patch5:		%{name}-%{version}-jtz.patch
-Patch6:		%{name}-datadir.patch
-Patch7:		%{name}-sgml-path.patch
-Patch8:		%{name}-posix.patch
+Patch5:		%{name}-datadir.patch
+Patch6:		%{name}-sgml-path.patch
+Patch7:		%{name}-posix.patch
 URL:		http://www.sgmltools.org/
 BuildRequires:	autoconf
 BuildRequires:	flex
@@ -106,7 +105,6 @@ sgmls - parser sprawdzaj±cy poprawno¶æ SGML.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-%patch8 -p1
 
 %build
 cd sgmls-1.1
