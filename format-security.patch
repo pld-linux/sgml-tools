@@ -1,0 +1,44 @@
+--- sgml-tools-1.0.9/sgmls-1.1/sgmlmsg.c~	1996-12-02 11:16:26.000000000 +0000
++++ sgml-tools-1.0.9/sgmls-1.1/sgmlmsg.c	2015-01-01 18:24:30.424156231 +0000
+@@ -253,7 +253,7 @@
+ 		    }
+ 		    else
+ 			 middle = 1;
+-		    xfprintf(efp, getheader(HDRPFX));
++		    xfprintf(efp, "%s", getheader(HDRPFX));
+ 		    xfprintf(efp, getheader(HDRLOC), ioflid(loc.fcb),
+ 			     loc.ename, loc.rcnt, loc.ccnt);
+ 	       }
+@@ -326,19 +326,19 @@
+ 	  xfprintf(efp, getheader(HDRMODE), parmbuf);
+ 	  switch (loc.curchar) {
+ 	  case EOFCHAR:
+-	       xfprintf(efp, getheader(HDREOF));
++	       xfprintf(efp, "%s", getheader(HDREOF));
+ 	       break;
+ 	  case RSCHAR:
+-	       xfprintf(efp, getheader(HDRRS));
++	       xfprintf(efp, "%s", getheader(HDRRS));
+ 	       break;
+ 	  case RECHAR:
+-	       xfprintf(efp, getheader(HDRRE));
++	       xfprintf(efp, "%s", getheader(HDRRE));
+ 	       break;
+ 	  case DELNONCH:
+ 	       xfprintf(efp, getheader(HDRCTL), UNSHIFTNON(loc.nextchar));
+ 	       break;
+ 	  case EOS:
+-	       xfprintf(efp, getheader(HDREE));
++	       xfprintf(efp, "%s", getheader(HDREE));
+ 	       break;
+ 	  case EOBCHAR:
+ 	       break;
+@@ -393,7 +393,7 @@
+      if (!gi)
+ 	  return;
+      spaces(efp, indent);
+-     xfprintf(efp, getheader(HDRELT));
++     xfprintf(efp, "%s", getheader(HDRELT));
+      do {
+ 	  fprintf(efp, " %s", gi);
+ 	  gi = getgi(++i);
