@@ -1,0 +1,11 @@
+--- sgml-tools-1.0.9/rtf-fix/rtf2rtf.l~	2015-01-01 18:25:34.000000000 +0000
++++ sgml-tools-1.0.9/rtf-fix/rtf2rtf.l	2015-01-01 18:29:15.784146165 +0000
+@@ -72,7 +72,7 @@
+ int skipnewline = 0;
+ 
+ extern char *yytext;
+-extern int yyleng;
++extern size_t yyleng;
+ 
+ #define CHAPTER 1
+ #define SECTION 2

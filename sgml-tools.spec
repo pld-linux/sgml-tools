@@ -23,6 +23,7 @@ Patch5:		%{name}-datadir.patch
 Patch6:		%{name}-sgml-path.patch
 Patch7:		%{name}-posix.patch
 Patch8:		format-security.patch
+Patch9:		flex.patch
 URL:		http://www.sgmltools.org/
 BuildRequires:	autoconf
 BuildRequires:	flex
@@ -107,6 +108,7 @@ sgmls - parser sprawdzający poprawność SGML.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 cd sgmls-1.1
